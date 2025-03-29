@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Notícias</title>
+
+    <!-- meta tags de autores, palavras-chaves e descrição -->
+
+    <meta name="author" content="André Urbaneck, João Trindade e Lucas Selau"> <!-- Autor do site -->
+    <meta name="description"
+        content="Portal de Notícias atualizado com temas sobre tecnologia, esportes, saúde e política. Fique por dentro das últimas novidades!">
+    <meta name="keywords" content="notícias, tecnologia, esportes, saúde, política, atualidades, últimas notícias">
+    <meta name="robots" content="index, follow"> <!-- Permite que os buscadores indexem a página -->
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <header class="cabecalho">
+        <div id="login">
+            <button><img src="person.png" alt="login" srcset=""></button>
+        </div>
+        <h1 class="title">Portal de Notícias</h1>
+
+        <!-- Botões para escolher o tema das notícia -->
+        <nav class="botoes-pc">
+            <button>Todas</button>
+            <button>Tecnologia</button>
+            <button>Esportes</button>
+            <button>Saúde</button>
+            <button>Política</button>
+        </nav>
+
+        <div id="searchContainer">
+            <input type="text" id="searchBar" placeholder="Pesquise por notícias...">
+            <div id="searchResults" class="dropdown"></div>
+        </div>
+    </header>
+
+    <!-- Onde aparecerá as notícias -->
+    <main class="content">
+        <!-- Botões para navegação -->
+        <div class="navegacao">
+            <button id="prevNews">❮</button>
+            <div id="noticias">
+            </div>
+            <button id="nextNews">❯</button>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <p>&copy; 2025 Portal de Notícias. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,271 @@
+html,
+body {
+    height: 100vh;
+    /*Resetando o padrão e configurações básicas*/
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    /*Configurações do body*/
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.cabecalho {
+    background: linear-gradient(90deg, #051322, #0c2f53);
+    padding: 15px;
+    color: white;
+    display: flex;
+    /* Configurações do header */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecalho h1 {
+    text-align: center;
+    /* Configurado o Título da página */
+    font-size: 1.8em;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#login {
+    
+}
+
+#login img {
+    background-color: white;
+    width: 60px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#login input {
+    border: 0 none;
+}
+
+.loginform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.541);
+    width: 300px;
+    height: 150px;
+    position: fixed;
+}
+
+.loginform button {
+    background-color: #06192e;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#searchContainer {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 25%;
+}
+
+#searchBar {
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+#searchBar:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#searchResults {
+    color: black;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    cursor: pointer;
+}
+
+#searchResults .resultItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+#searchResults .resultItem:hover {
+    background-color: #f7f7f7;
+}
+
+#searchResults .resultItem img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.botoes-pc button {
+    background-color: #06192e;
+    color: white;
+    padding: 12px 18px;
+    margin: 0 2px;
+    /* Botões do menu para PC */
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: transform 0.2s ease-in-out;
+    gap: 15px;
+}
+
+.botoes-pc button:hover {
+    background-color: #112d4d;
+    /* Animações dos botões para PC */
+    transform: scale(1.1);
+}
+
+.noticia {
+    width: 100%;
+    height: 320px;
+    /* Altura fixa para garantir que a imagem não altere sua altura */
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    /* Para garantir que a imagem não ultrapasse o contêiner */
+}
+
+.noticia img {
+    width: 700px;
+    /* Garante que a imagem ocupe toda a largura do contêiner */
+    height: 400px;
+    /* Garante que a altura da imagem seja fixa */
+    object-fit: cover;
+    /* A imagem vai cobrir todo o espaço, mantendo as proporções */
+    filter: brightness(65%);
+    /* Torna a imagem mais escura para o texto se destacar */
+}
+
+.noticia h2 {
+    position: absolute;
+    bottom: 20px;
+    /* Ajuste para dar um pouco de espaço do fundo da imagem */
+    left: 10px;
+    /* Posiciona o título no canto esquerdo */
+    font-size: 1.5em;
+    /* Tamanho do título */
+    color: white;
+    /* Cor do texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    /* Sombreamento para legibilidade */
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+    /* Limita a largura do título */
+    text-align: left;
+    background: none;
+    /* Remove o fundo do título */
+    white-space: normal;
+    /* Permite que o título quebre em várias linhas */
+    word-wrap: break-word;
+    /* Quebra a palavra se for muito longa */
+    line-height: 1.4;
+    /* Ajuste o espaçamento entre as linhas do título */
+}
+
+/* Outros estilos para parágrafos e links, se necessário */
+.noticia p {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.noticia a {
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+.navegacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.navegacao button {
+    height: 60px;
+    width: 60px;
+    font-size: 24px;
+    border-radius: 50%;
+}
+
+#prevNews,
+#nextNews {
+    background-color: rgba(90, 90, 90, 0.6);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    /* Botões para trocar a notícia */
+    font-size: 1em;
+    transition: transform 0.2s;
+    margin: 30px 5px;
+    padding: 12px;
+    height: 85%;
+    width: 4%;
+    ;
+}
+
+#prevNews:hover,
+#nextNews:hover {
+    background-color: rgba(30, 30, 30, 0.8);
+    transform: scale(1.1);
+    /* Animação dos botões para trocar a notícia */
+}
+
+.content {
+    flex-grow: 1;
+    /* Faz o main ocupar o espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rodape {
+    background: linear-gradient(90deg, #040d16, #0c2f53);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    /* Configurações do footer */
+    width: 100%;
+}
