@@ -1,37 +1,174 @@
 #login img {
     background-color: white;
     width: 60px;
-    border-radius: 15px;
+    height: 60px;  /* Tamanho fixo da imagem */
+    border-radius: 50%;
     cursor: pointer;
     flex-shrink: 0;
+}
+
+#login button {
+    border: none;
+    background-color: transparent;
 }
 
 .loginform {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
+    transform: translate(-50%, -50%); /* Isso centraliza a modal corretamente */
+    background-color: #fff;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     text-align: center;
-    min-width: 300px;
-    position: fixed;
+    min-width: 320px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: fixed; /* Remover a segunda posição relative */
 }
 
-.close-btn {
+/* Botão de fechar (agora no canto superior direito) */
+.loginform .close-btn {
     position: absolute;
-    top: 5px;
+    top: 10px;
     right: 10px;
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     color: #333;
 }
 
-.close-btn:hover {
+.loginform .close-btn:hover {
     color: red;
+}
+
+/* Estilo para os campos de entrada */
+.loginform input[type="text"], 
+.loginform input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.loginform input[type="text"]:focus, 
+.loginform input[type="password"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Estilo para o botão de ação "Entrar" */
+#entrar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#entrar:hover {
+    background-color: #45a049; /* Cor um pouco mais escura ao passar o mouse */
+}
+
+/* Estilo para o botão "Cadastrar-se" */
+#cadastrar {
+    background-color: #008CBA;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#cadastrar:hover {
+    background-color: #006f8a;
+}
+
+/* Estilo para o botão "Alterar Imagem" */
+#alterar-imagem {
+    background-color: #FF9800;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#perfil-img {
+    width: 60px; /* Tamanho fixo */
+    height: 60px; /* Tamanho fixo */
+    object-fit: cover; /* Isso garante que a imagem será redimensionada proporcionalmente */
+    border-radius: 50%; /* Torna a imagem redonda */
+}
+
+
+#alterar-imagem:hover {
+    background-color: #e68900;
+}
+
+/* Estilo para o botão de logout */
+#logout {
+    background-color: #f44336;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#logout:hover {
+    background-color: #d32f2f;
+}
+
+/* Estilos para as mensagens de erro ou sucesso */
+#mensagem-erro-sucesso {
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+#mensagem-erro-sucesso.erro {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+#mensagem-erro-sucesso.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Labels dos campos de entrada */
+#loginform label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    color: #333;
 }

@@ -3,6 +3,7 @@ const searchBar = document.getElementById("searchBar");
 const searchResults = document.getElementById("searchResults");
 const searchContainer = document.getElementById("searchContainer");
 
+
 function filtroNoticias(searchText) {
     const searchResults = document.getElementById('searchResults');
     searchResults.innerHTML = '';
@@ -21,6 +22,14 @@ function filtroNoticias(searchText) {
         return noticia.title.trim().toLowerCase().includes(normalizedSearchText);
     });
 
+    // Exibe uma mensagem caso não haja resultados
+    if (filtered.length === 0) {
+        const noResultsMessage = document.createElement('div');
+        noResultsMessage.classList.add('no-results');
+        noResultsMessage.textContent = 'Nenhuma notícia encontrada';
+        searchResults.appendChild(noResultsMessage);
+    }
+
     // Exibe as notícias filtradas no dropdown
     filtered.forEach(noticia => {
         const resultItem = document.createElement('div');
@@ -38,12 +47,15 @@ function filtroNoticias(searchText) {
     searchResults.style.display = filtered.length > 0 ? 'block' : 'none';
 }
 
-
-
 // Quando clica no ícone, a barra expande e foca nela
 searchIcon.addEventListener("click", () => {
     searchContainer.classList.add("active");
     searchBar.focus();
+});
+
+// Quando o usuário digita, chama a função de filtro
+searchBar.addEventListener("input", (event) => {
+    filtroNoticias(event.target.value);
 });
 
 // Fecha a barra ao clicar fora
@@ -51,18 +63,7 @@ document.body.addEventListener("click", (event) => {
     if (!searchContainer.contains(event.target)) {
         searchContainer.classList.remove("active");
         searchBar.value = ""; // Limpa o texto
-    }
-});
-
-// Quando o usuário clica fora, a barra de pesquisa some **apenas se não for nos resultados**
-document.body.addEventListener("click", (event) => {
-    if (!searchContainer.contains(event.target) && !searchResults.contains(event.target)) {
-        searchBar.classList.remove("active");
-        searchBar.value = ""; // Limpa o texto
         searchResults.style.display = "none"; // Esconde o dropdown
-        setTimeout(() => {
-            searchIcon.style.display = "block"; // Mostra o ícone de volta
-        }, 300);
     }
 });
 
@@ -71,9 +72,7 @@ searchResults.addEventListener("click", (event) => {
     event.stopPropagation(); // Impede o clique de fechar a barra
 });
 
-
-
-// fecha a barra de pesquisa quando clica fora
+// Evita o clique fora fechar o dropdown, mas fecha a barra se clicar fora dela
 document.body.addEventListener('click', (event) => {
     if (!searchResults.contains(event.target) && event.target.id !== "searchBar") {
         searchResults.style.display = 'none';
