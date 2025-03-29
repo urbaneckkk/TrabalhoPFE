@@ -1,0 +1,114 @@
+#searchContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 40px;
+    /* Começa pequeno */
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+#searchContainer.active {
+    width: 250px;
+    /* Expande ao clicar */
+}
+
+#searchContainer.active #searchBar {
+    opacity: 1;
+}
+
+#searchIcon {
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+}
+
+#searchBar.active {
+    width: 200px;
+    /* Tamanho da barra expandida */
+    padding: 10px;
+    opacity: 1;
+}
+
+#searchBar {
+    width: 100%;
+    height: 30px;
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#searchBar:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#searchResults {
+    color: black;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    cursor: pointer;
+}
+
+#searchResults .resultItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Espaço entre a imagem e o texto */
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    /* Linha separadora entre itens */
+}
+
+#searchResults .resultItem:hover {
+    background-color: #f7f7f7;
+}
+
+#searchResults .resultItem img {
+    width: 75px;
+    /* Tamanho da imagem */
+    height: 75px;
+    object-fit: cover;
+    padding-right: 25px;
+}
+
+#searchResults .resultItem a {
+    text-decoration: none;
+    /* Remove o sublinhado do link */
+    color: inherit;
+    /* Mantém a cor do texto conforme o estilo do container */
+    display: flex;
+    /* Garante que o link se comporte como um bloco flexível */
+    align-items: center;
+    /* Alinha imagem e texto no centro verticalmente */
+    width: 100%;
+    /* Faz com que o link ocupe todo o espaço do item */
+}
+
+#searchResults .resultItem span {
+    flex-grow: 1;
+    white-space: normal;
+    /* Permite que o texto quebre em várias linhas */
+    overflow: hidden;
+    display: block;
+    /* Faz o span ocupar a largura total disponível */
+    word-wrap: break-word;
+    /* Garante que palavras longas sejam quebradas */
+    max-width: 400px;
+    /* Define uma largura máxima para o título */
+}

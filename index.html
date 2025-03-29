@@ -13,66 +13,65 @@
         content="Portal de Notícias atualizado com temas sobre tecnologia, esportes, saúde e política. Fique por dentro das últimas novidades!">
     <meta name="keywords" content="notícias, tecnologia, esportes, saúde, política, atualidades, últimas notícias">
     <meta name="robots" content="index, follow"> <!-- Permite que os buscadores indexem a página -->
-
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/search.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/header.css">
 </head>
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <header class="cabecalho">
-
-        <div id="login">
-            <button><img src="imagens/person.jpg" alt="login"></button>
+        <div id="login"> <!--Imagem do login para telas grandes-->
+            <button><img src="imagens/person.jpg" alt="login" srcset=""></button>
         </div>
-        <h1 class="title">Portal de Notícias</h1>
+        <h1>Portal de Notícias</h1> <!--Título do site-->
 
         <!-- Botões para escolher o tema das notícia -->
-        <nav>
-            <button class="menu-icone">☰</button>
+        <nav class="menu-container">
+            <button class="menu-icone">☰</button> <!--Menu para mobile-->
             <div class="menu-pc">
                 <button>Todas</button>
                 <button>Tecnologia</button>
-                <button>Esportes</button>
+                <button>Esportes</button> <!--Menu para desktop-->
                 <button>Saúde</button>
                 <button>Política</button>
             </div>
 
-            <div id="searchContainer">
+            <div id="searchContainer"> <!--Barra de pesquisa-->
                 <span id="searchIcon">🔍</span>
                 <input type="text" id="searchBar" placeholder="Pesquise por notícias...">
                 <div id="searchResults" class="dropdown"></div>
             </div>
-            
         </nav>
-
     </header>
 
     <!-- Onde aparecerá as notícias -->
-    <main class="padrao">
-    <!-- Botões para navegação -->
-        <button id="prevNews">&#11164;</button>
-        <div id="noticias"></div>                   
-        <button id="nextNews">&#11166;</button> 
+    <main>
+        <section class="padrao">
+            <button id="prevNews">&#11164;</button>
+            <div id="noticias"></div> <!--Layout para telas grandes-->
+            <button id="nextNews">&#11166;</button>
+        </section>
 
-    </main>
-
-    <main class="mobile">
-            <!-- Botões para navegação -->
-            <div id="noticias"></div>   
-            <div class="botao-mobile">
+        <section class="mobile">
+            <div id="noticias"></div>
+            <div class="botao-mobile"> <!--Layout para telas pequenas -->
                 <button id="prevNews">&#11164;</button>
-                <button id="nextNews">&#11166;</button> 
-            </div> 
+                <button id="nextNews">&#11166;</button>
+            </div>
+        </section>
     </main>
-        
 
     <!-- Rodapé -->
     <footer class="rodape">
         <p>&copy; 2025 Portal de Notícias. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="scripts/mainScript.js"></script>
+    <script src="scripts/loginScript.js"></script>
+    <script src="scripts/searchScript.js"></script>
 </body>
 
 </html>

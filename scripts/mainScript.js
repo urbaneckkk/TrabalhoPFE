@@ -1,0 +1,111 @@
+let todasNoticias = [];
+let noticiasFiltradas = [];
+let index = 0;
+
+document.querySelectorAll('header nav button').forEach(button => {
+    button.addEventListener('click', () => {
+        const categoria = button.textContent.toLowerCase();
+        getNoticias(categoria);
+    });
+});
+
+document.getElementById('searchBar').addEventListener('input', (event) => {
+    const searchText = event.target.value.toLowerCase();
+    filtroNoticias(searchText);
+});
+
+async function getNoticias(query) {
+    try {
+        // esconder api key depois
+        const apiKey = '85b93d6b74ff446ea6f1e9b43b091cd7';
+        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=pt&apiKey=${apiKey}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status !== "ok") {
+            console.error('Erro na resposta da API:', data);
+            return;
+        }
+
+        if (!data.articles) {
+            console.error('Nenhuma notícia encontrada na resposta:', data);
+            return;
+        }
+
+        // dados que vamos consumir da api
+        const noticias = data.articles.map(article => ({
+            title: article.title,
+            link: article.url,
+            image: article.urlToImage,
+            category: query
+        }));
+
+        if (query === "todas") {
+            todasNoticias = noticias;
+            noticiasFiltradas = [...todasNoticias];  // carrega todas as noticias
+        } else {
+            noticiasFiltradas = noticias;  // carrega noticia do filtro selecionado
+        }
+
+        embaralhaNoticia();  // carrega noticia aleatoria ao trocar de categoria
+        index = 0;
+        renderizaNoticias();  // renderiza as noticias filtradas
+    } catch (error) {
+        console.error('Erro ao buscar notícias:', error);
+    }
+}
+
+
+// função pra renderizar noticia
+function renderizaNoticias() {
+    const noticiasContainer = document.getElementById("noticias");
+    noticiasContainer.innerHTML = '';
+
+    // verifica se tem noticia filtrada
+    if (noticiasFiltradas.length === 0) {
+        noticiasContainer.innerHTML = '<p>Não há notícias disponíveis para esta categoria.</p>';
+        return;
+    }
+
+    // verifica se o indice esta dentro das noticias filtradas
+    const noticia = noticiasFiltradas[index];
+    if (!noticia) {
+        noticiasContainer.innerHTML = '<p>Não há notícias disponíveis para esta categoria.</p>';
+        return;
+    }
+
+    const noticiaElement = document.createElement("div");
+    noticiaElement.classList.add("noticia");
+
+    noticiaElement.innerHTML = `
+        <a href="${noticia.link}" target="_blank">
+            <img src="${noticia.image}" alt="Imagem da notícia">
+            <h2>${noticia.title}</h2>
+        </a>
+    `;
+
+    noticiasContainer.appendChild(noticiaElement);
+}
+
+// função pra carregar noticias aleatoriamente
+function embaralhaNoticia() {
+    for (let i = noticiasFiltradas.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [noticiasFiltradas[i], noticiasFiltradas[j]] = [noticiasFiltradas[j], noticiasFiltradas[i]];
+    }
+}
+
+// Adiciona os event listeners para navegação entre notícias
+document.getElementById("prevNews").addEventListener("click", () => {
+    index = (index - 1 + noticiasFiltradas.length) % noticiasFiltradas.length;  // noticia anterior
+    renderizaNoticias();
+});
+
+document.getElementById("nextNews").addEventListener("click", () => {
+    index = (index + 1) % noticiasFiltradas.length;  // proxima noticia
+    renderizaNoticias();
+});
+
+
+getNoticias('todas');
