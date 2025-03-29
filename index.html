@@ -21,36 +21,51 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <header class="cabecalho">
+
         <div id="login">
-            <button><img src="person.png" alt="login" srcset=""></button>
+            <button><img src="imagens/person.jpg" alt="login"></button>
         </div>
         <h1 class="title">Portal de Notícias</h1>
-        <p>testando git alteração no pc</p>
+
         <!-- Botões para escolher o tema das notícia -->
-        <nav class="botoes-pc">
-            <button>Todas</button>
-            <button>Tecnologia</button>
-            <button>Esportes</button>
-            <button>Saúde</button>
-            <button>Política</button>
+        <nav>
+            <button class="menu-icone">☰</button>
+            <div class="menu-pc">
+                <button>Todas</button>
+                <button>Tecnologia</button>
+                <button>Esportes</button>
+                <button>Saúde</button>
+                <button>Política</button>
+            </div>
+
+            <div id="searchContainer">
+                <span id="searchIcon">🔍</span>
+                <input type="text" id="searchBar" placeholder="Pesquise por notícias...">
+                <div id="searchResults" class="dropdown"></div>
+            </div>
+            
         </nav>
 
-        <div id="searchContainer">
-            <input type="text" id="searchBar" placeholder="Pesquise por notícias...">
-            <div id="searchResults" class="dropdown"></div>
-        </div>
     </header>
 
     <!-- Onde aparecerá as notícias -->
-    <main class="content">
-        <!-- Botões para navegação -->
-        <div class="navegacao">
-            <button id="prevNews">❮</button>
-            <div id="noticias">
-            </div>
-            <button id="nextNews">❯</button>
-        </div>
+    <main class="padrao">
+    <!-- Botões para navegação -->
+        <button id="prevNews">&#11164;</button>
+        <div id="noticias"></div>                   
+        <button id="nextNews">&#11166;</button> 
+
     </main>
+
+    <main class="mobile">
+            <!-- Botões para navegação -->
+            <div id="noticias"></div>   
+            <div class="botao-mobile">
+                <button id="prevNews">&#11164;</button>
+                <button id="nextNews">&#11166;</button> 
+            </div> 
+    </main>
+        
 
     <!-- Rodapé -->
     <footer class="rodape">

@@ -1,17 +1,13 @@
-html,
-body {
+html, body {
     height: 100vh;
-    /*Resetando o padrão e configurações básicas*/
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
     display: flex;
-    /*Configurações do body*/
+    flex-direction: column;
     flex-direction: column;
     overflow-x: hidden;
+    width: 100%;
 }
 
 .cabecalho {
@@ -19,73 +15,101 @@ body {
     padding: 15px;
     color: white;
     display: flex;
-    /* Configurações do header */
     justify-content: space-between;
     align-items: center;
 }
 
 .cabecalho h1 {
     text-align: center;
-    /* Configurado o Título da página */
     font-size: 1.8em;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    width: 20%;
 }
 
-#login {
-    
+nav {
+    width: 70%;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 #login img {
     background-color: white;
     width: 60px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 15px;
     cursor: pointer;
-}
-
-#login input {
-    border: 0 none;
+    flex-shrink: 0;
 }
 
 .loginform {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6px;
-    background-color: rgba(0, 0, 0, 0.541);
-    width: 300px;
-    height: 150px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    min-width: 300px;
     position: fixed;
 }
 
-.loginform button {
-    background-color: #06192e;
-    color: white;
-    padding: 6px 12px;
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
     border: none;
+    font-size: 18px;
     cursor: pointer;
-    border-radius: 5px;
+    color: #333;
+}
+
+.close-btn:hover {
+    color: red;
 }
 
 #searchContainer {
     position: relative;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    width: 25%;
+    width: 40px; /* Começa pequeno */
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+#searchContainer.active {
+    width: 250px; /* Expande ao clicar */
+}
+
+#searchContainer.active #searchBar {
+    opacity: 1;
+}
+
+#searchIcon {
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+}
+
+#searchBar.active {
+    width: 200px; /* Tamanho da barra expandida */
+    padding: 10px;
+    opacity: 1;
 }
 
 #searchBar {
     width: 100%;
     height: 30px;
-    padding: 10px;
+    padding: 8px;
     font-size: 14px;
     border: 2px solid #ddd;
     border-radius: 4px;
+    outline: none;
     box-sizing: border-box;
-    transition: all 0.3s ease;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
 
 #searchBar:focus {
@@ -113,9 +137,9 @@ body {
 #searchResults .resultItem {
     display: flex;
     align-items: center;
+    gap: 10px; /* Espaço entre a imagem e o texto */
     padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd; /* Linha separadora entre itens */
 }
 
 #searchResults .resultItem:hover {
@@ -123,142 +147,146 @@ body {
 }
 
 #searchResults .resultItem img {
-    width: 80px;
-    height: 80px;
+    width: 75px; /* Tamanho da imagem */
+    height: 75px;
     object-fit: cover;
-    border-radius: 4px;
-    margin-right: 10px;
+    padding-right: 25px;
 }
 
-.botoes-pc button {
+#searchResults .resultItem a {
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: inherit; /* Mantém a cor do texto conforme o estilo do container */
+    display: flex; /* Garante que o link se comporte como um bloco flexível */
+    align-items: center; /* Alinha imagem e texto no centro verticalmente */
+    width: 100%; /* Faz com que o link ocupe todo o espaço do item */
+}
+
+#searchResults .resultItem span {
+    flex-grow: 1;
+    white-space: normal; /* Permite que o texto quebre em várias linhas */
+    overflow: hidden;
+    display: block; /* Faz o span ocupar a largura total disponível */
+    word-wrap: break-word; /* Garante que palavras longas sejam quebradas */
+    max-width: 400px; /* Define uma largura máxima para o título */
+}
+
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.menu-pc {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+    margin-right: 2%;
+    flex-wrap: wrap;
+}
+
+.menu-pc button {
     background-color: #06192e;
     color: white;
     padding: 12px 18px;
-    margin: 0 2px;
-    /* Botões do menu para PC */
     border: none;
     cursor: pointer;
     border-radius: 6px;
     font-size: 1em;
     transition: transform 0.2s ease-in-out;
-    gap: 15px;
 }
 
-.botoes-pc button:hover {
+.menu-pc button:hover {
     background-color: #112d4d;
-    /* Animações dos botões para PC */
     transform: scale(1.1);
+}
+
+.menu-icone {
+    display: none;
+    background-color: #112d4d;
+    color: white;
+    font-size: 1.8em;
+    padding: 6px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
 .noticia {
     width: 100%;
-    height: 320px;
-    /* Altura fixa para garantir que a imagem não altere sua altura */
+    height: auto;
     position: relative;
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    /* Para garantir que a imagem não ultrapasse o contêiner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#noticias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
 }
 
 .noticia img {
-    width: 700px;
-    /* Garante que a imagem ocupe toda a largura do contêiner */
-    height: 400px;
-    /* Garante que a altura da imagem seja fixa */
-    object-fit: cover;
-    /* A imagem vai cobrir todo o espaço, mantendo as proporções */
+    margin: 40px 0;
+    width: 100%;
+    height: 60%;
+    aspect-ratio: 16 / 9; /* Mantém uma proporção uniforme */
+    object-fit: cover; /* Garante que a imagem preencha todo o espaço sem distorção */
     filter: brightness(65%);
-    /* Torna a imagem mais escura para o texto se destacar */
 }
-
 .noticia h2 {
     position: absolute;
     bottom: 20px;
-    /* Ajuste para dar um pouco de espaço do fundo da imagem */
     left: 10px;
-    /* Posiciona o título no canto esquerdo */
     font-size: 1.5em;
-    /* Tamanho do título */
     color: white;
-    /* Cor do texto */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    /* Sombreamento para legibilidade */
     padding: 10px;
     border-radius: 5px;
     max-width: 80%;
-    /* Limita a largura do título */
     text-align: left;
-    background: none;
-    /* Remove o fundo do título */
     white-space: normal;
-    /* Permite que o título quebre em várias linhas */
     word-wrap: break-word;
-    /* Quebra a palavra se for muito longa */
     line-height: 1.4;
-    /* Ajuste o espaçamento entre as linhas do título */
 }
 
-/* Outros estilos para parágrafos e links, se necessário */
-.noticia p {
-    color: white;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.noticia a {
-    color: white;
-    text-decoration: underline;
-    font-weight: bold;
-    display: block;
-    text-align: center;
-}
-
-.navegacao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: nowrap;
-}
-
-.navegacao button {
-    height: 60px;
-    width: 60px;
-    font-size: 24px;
-    border-radius: 50%;
-}
-
-#prevNews,
-#nextNews {
+#prevNews, #nextNews {
     background-color: rgba(90, 90, 90, 0.6);
-    color: white;
+    color: black;
     border: none;
     cursor: pointer;
     border-radius: 6px;
-    /* Botões para trocar a notícia */
     font-size: 1em;
     transition: transform 0.2s;
-    margin: 30px 5px;
-    padding: 12px;
+    padding: 10px;
+    margin: 0 5px;
+    width: 3%;
     height: 85%;
-    width: 4%;
-    ;
 }
 
-#prevNews:hover,
-#nextNews:hover {
+#prevNews:hover, #nextNews:hover {
     background-color: rgba(30, 30, 30, 0.8);
     transform: scale(1.1);
-    /* Animação dos botões para trocar a notícia */
 }
 
-.content {
+.padrao {
     flex-grow: 1;
-    /* Faz o main ocupar o espaço restante */
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+
+}
+
+.mobile {
+    display: none;
 }
 
 .rodape {
@@ -266,6 +294,139 @@ body {
     color: white;
     text-align: center;
     padding: 10px;
-    /* Configurações do footer */
     width: 100%;
+    margin-top: auto;
+}
+
+/* Responsividade */
+
+@media screen and (max-width: 1024px) {
+    .cabecalho {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cabecalho h1 {
+        width: 80%;
+    }
+    .menu-pc {
+        display: none;
+    }
+    .menu-icone {
+        display: block;
+        margin: 0 20px;
+    }
+    #searchContainer {
+        width: 80%;
+    }
+    #prevNews, #nextNews {
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cabecalho h1 {
+        font-size: 1.5em;
+    }
+
+    .cabecalho {
+        justify-content: center;
+        align-items: center;
+    }
+    .menu-container {
+        width: 100%;
+        justify-content: center;
+    }
+    #searchContainer {
+        width: 100%;
+    }
+    .noticia img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #prevNews, #nextNews {
+        height: 50%;
+        width: 6%;
+    }
+
+    #login {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cabecalho h1 {
+        font-size: 1em;
+    }
+
+    .cabecalho {
+        justify-content: center;
+        align-items: center;
+    }
+    .menu-container {
+        width: 100%;
+        justify-content: center;
+    }
+    #searchContainer {
+        width: 60%;
+    }
+    .noticia img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #login {
+        display: none;
+    }
+
+    .padrao {
+        display: none;
+    }
+
+    .mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto 0;
+        width: 100%;
+    }
+
+    #prevNews, #nextNews {
+        height: 100%;
+        width: 50%;
+    }
+
+    .botao-mobile {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 80%;
+        height: 40%;
+    }
+
+    .noticia img {
+        margin: 40px 0;
+        width: 100%;
+        height: 450px;
+        aspect-ratio: 16 / 9; /* Mantém uma proporção uniforme */
+        object-fit: cover; /* Garante que a imagem preencha todo o espaço sem distorção */
+        filter: brightness(65%);
+    }
+
+    .noticia h2 {
+        position: absolute;
+        bottom: 30px;
+        left: 10px;
+        font-size: 1.5em;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 5px;
+        max-width: 80%;
+        text-align: left;
+        white-space: normal;
+        word-wrap: break-word;
+        line-height: 1.4;
+    }
 }

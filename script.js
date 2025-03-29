@@ -2,6 +2,11 @@ let todasNoticias = [];
 let noticiasFiltradas = [];
 let index = 0;
 
+const searchIcon = document.getElementById("searchIcon");
+const searchBar = document.getElementById("searchBar");
+const searchResults = document.getElementById("searchResults");
+const searchContainer = document.getElementById("searchContainer");
+
 document.querySelectorAll('header nav button').forEach(button => {
     button.addEventListener('click', () => {
         const categoria = button.textContent.toLowerCase();
@@ -89,48 +94,84 @@ function renderizaNoticias() {
 }
 
 // filtro de noticias
+
 function filtroNoticias(searchText) {
     const searchResults = document.getElementById('searchResults');
     searchResults.innerHTML = '';
 
-    // vai mostrando as noticia com base no texto
+    // Normaliza o texto digitado
     const normalizedSearchText = searchText.trim().toLowerCase();
 
-    // se nao tiver texto esconde o drop
+    // Se não tiver texto, esconde o drop
     if (normalizedSearchText === '') {
         searchResults.style.display = 'none';
         return;
     }
 
-    // filtra as noticias conforme digita
+    // Filtra as notícias conforme o usuário digita
     const filtered = [...todasNoticias].filter(noticia => {
-        const normalizedTitle = noticia.title.trim().toLowerCase();
-        return normalizedTitle.includes(normalizedSearchText);
+        return noticia.title.trim().toLowerCase().includes(normalizedSearchText);
     });
 
-    // mostra as noticias no drop
+    // Exibe as notícias filtradas no dropdown
     filtered.forEach(noticia => {
         const resultItem = document.createElement('div');
         resultItem.classList.add('resultItem');
         resultItem.innerHTML = `
-            <img src="${noticia.image || 'https://via.placeholder.com/40'}" alt="Imagem da notícia">
-            <span>${noticia.title}</span>
+            <a href="${noticia.link}" target="_blank">
+                <img src="${noticia.image}" alt="Imagem da notícia">
+                <span>${noticia.title}</span>
+            </a>
         `;
-        resultItem.addEventListener('click', () => {
-            index = noticiasFiltradas.indexOf(noticia);
-            renderizaNoticias();
-            searchResults.style.display = 'none'; // esconde drop depois de clicar na noticia
-        });
         searchResults.appendChild(resultItem);
     });
 
-    // esconde o drop se nao tiver noticia
-    if (filtered.length > 0) {
-        searchResults.style.display = 'block';
-    } else {
+    // Exibe ou esconde os resultados
+    searchResults.style.display = filtered.length > 0 ? 'block' : 'none';
+}
+
+
+
+// Quando clica no ícone, a barra expande e foca nela
+searchIcon.addEventListener("click", () => {
+    searchContainer.classList.add("active");
+    searchBar.focus();
+});
+
+// Fecha a barra ao clicar fora
+document.body.addEventListener("click", (event) => {
+    if (!searchContainer.contains(event.target)) {
+        searchContainer.classList.remove("active");
+        searchBar.value = ""; // Limpa o texto
+    }
+});
+
+// Quando o usuário clica fora, a barra de pesquisa some **apenas se não for nos resultados**
+document.body.addEventListener("click", (event) => {
+    if (!searchContainer.contains(event.target) && !searchResults.contains(event.target)) {
+        searchBar.classList.remove("active");
+        searchBar.value = ""; // Limpa o texto
+        searchResults.style.display = "none"; // Esconde o dropdown
+        setTimeout(() => {
+            searchIcon.style.display = "block"; // Mostra o ícone de volta
+        }, 300);
+    }
+});
+
+// Mantém a barra aberta ao clicar em um resultado
+searchResults.addEventListener("click", (event) => {
+    event.stopPropagation(); // Impede o clique de fechar a barra
+});
+
+
+
+// fecha a barra de pesquisa quando clica fora
+document.body.addEventListener('click', (event) => {
+    if (!searchResults.contains(event.target) && event.target.id !== "searchBar") {
         searchResults.style.display = 'none';
     }
-}
+});
+
 
 // função pra carregar noticias aleatoriamente
 function embaralhaNoticia() {
@@ -139,6 +180,7 @@ function embaralhaNoticia() {
         [noticiasFiltradas[i], noticiasFiltradas[j]] = [noticiasFiltradas[j], noticiasFiltradas[i]];
     }
 }
+
 
 
 // Adiciona os event listeners para navegação entre notícias
@@ -154,37 +196,45 @@ document.getElementById("nextNews").addEventListener("click", () => {
 
 
 
-// pra baixo são funcões do botão de login
+
+
+
+
+// codigo para formulario
 
 document.getElementById("login").addEventListener("click", (event) => {
     event.stopPropagation();
-    const loginform = document.createElement('div');
-    const login = document.getElementById("login")
-    let loginformz = document.querySelector('.loginform');
-    if (!loginformz) {
+
+    let loginform = document.querySelector('.loginform');
+
+    if (!loginform) {
+        loginform = document.createElement('div');
         loginform.classList.add('loginform');
         loginform.innerHTML = `
-        <label>Login: <br/>
-        <input placeholder="Digite seu usuário" type="text"><br/>
-        <label>Senha: <br/>
-        <input placeholder="Digite sua senha" type="password"> <br/>
-        <button>Entrar</button>
+            <button class="close-btn">&times;</button>
+            <label>Login: <br/>
+            <input placeholder="Digite seu usuário" type="text"><br/>
+            <label>Senha: <br/>
+            <input placeholder="Digite sua senha" type="password"> <br/>
+            <button id="entrar">Entrar</button>
         `;
-        login.appendChild(loginform);
-    }
-    else {
-        loginform.remove();
+
+        document.body.appendChild(loginform);
+
+        // Adiciona evento ao botão de fechar
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            loginform.remove();
+        });
     }
 });
 
-// Impede que o clique dentro da div de login feche a div
-    document.body.addEventListener("click", (event) => {
-        const loginform = document.querySelector('.loginform');
-        if (loginform && !loginform.contains(event.target) && event.target.id !== "login") {
-            loginform.remove();
-        }
-    });
-
+// Fecha o login ao clicar fora
+document.body.addEventListener("click", (event) => {
+    const loginform = document.querySelector('.loginform');
+    if (loginform && !loginform.contains(event.target) && event.target.id !== "login") {
+        loginform.remove();
+    }
+});
 
 
 
