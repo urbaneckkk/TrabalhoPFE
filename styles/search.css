@@ -5,7 +5,6 @@
     width: 40px;
     /* Começa pequeno */
     transition: width 0.3s ease-in-out;
-    overflow: hidden;
 }
 
 #searchContainer.active {
@@ -111,4 +110,30 @@
     /* Garante que palavras longas sejam quebradas */
     max-width: 400px;
     /* Define uma largura máxima para o título */
+}
+
+
+@media screen and (max-width: 1024px) {
+    #searchContainer {
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    #searchContainer {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    #searchContainer {
+        width: 60%;
+    }
+    
+
+
 }

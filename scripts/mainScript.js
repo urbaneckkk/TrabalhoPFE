@@ -9,10 +9,8 @@ document.querySelectorAll('header nav button').forEach(button => {
     });
 });
 
-document.getElementById('searchBar').addEventListener('input', (event) => {
-    const searchText = event.target.value.toLowerCase();
-    filtroNoticias(searchText);
-});
+
+
 
 async function getNoticias(query) {
     try {
@@ -106,6 +104,32 @@ document.getElementById("nextNews").addEventListener("click", () => {
     index = (index + 1) % noticiasFiltradas.length;  // proxima noticia
     renderizaNoticias();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuIcone = document.querySelector(".menu-icone");
+    const menuPc = document.querySelector(".menu-pc");
+
+    // Alterna a visibilidade do menu
+    menuIcone.addEventListener("click", function (event) {
+        event.stopPropagation(); // Evita que o clique no botão feche o menu imediatamente
+        menuPc.style.display = (menuPc.style.display === "flex") ? "none" : "flex";
+    });
+
+    // Fecha o menu ao clicar em qualquer botão dentro dele
+    document.querySelectorAll(".menu-pc button").forEach(button => {
+        button.addEventListener("click", function () {
+            menuPc.style.display = "none";
+        });
+    });
+
+    // Fecha o menu ao clicar fora dele, mas ignora o ícone de menu
+    document.addEventListener("click", function (event) {
+        if (!menuPc.contains(event.target) && event.target !== menuIcone && !menuIcone.contains(event.target)) {
+            menuPc.style.display = "none";
+        }
+    });
+});
+
 
 
 getNoticias('todas');

@@ -47,6 +47,11 @@ function filtroNoticias(searchText) {
     searchResults.style.display = filtered.length > 0 ? 'block' : 'none';
 }
 
+document.getElementById('searchBar').addEventListener('input', (event) => {
+    const searchText = event.target.value.toLowerCase();
+    filtroNoticias(searchText);
+});
+
 // Quando clica no ícone, a barra expande e foca nela
 searchIcon.addEventListener("click", () => {
     searchContainer.classList.add("active");

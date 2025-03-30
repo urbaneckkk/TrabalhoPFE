@@ -1,10 +1,10 @@
 .cabecalho {
     background: linear-gradient(90deg, #051322, #0c2f53);
-    padding: 15px;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px;
 }
 
 .cabecalho h1 {
@@ -18,22 +18,28 @@ nav {
     width: 70%;
     display: flex;
     flex-wrap: nowrap;
+    position: relative;
 }
 
 .menu-container {
+    width: 70%;
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    flex-wrap: wrap;
 }
 
+/* Menu abre para baixo */
 .menu-pc {
-    display: flex;
-    gap: 10px;
-    flex-grow: 1;
-    margin-right: 2%;
-    flex-wrap: wrap;
+    display: none;
+    flex-direction: column;
+    background: #06192e;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 150px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
 .menu-pc button {
@@ -44,16 +50,18 @@ nav {
     cursor: pointer;
     border-radius: 6px;
     font-size: 1em;
-    transition: transform 0.2s ease-in-out;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu-pc button:hover {
     background-color: #112d4d;
-    transform: scale(1.1);
 }
 
+/* Botão menu-icone sempre visível */
 .menu-icone {
-    display: none;
+    display: block;
     background-color: #112d4d;
     color: white;
     font-size: 1.8em;
@@ -61,4 +69,106 @@ nav {
     border: none;
     cursor: pointer;
     border-radius: 6px;
+}
+
+/* Garantir que o menu sempre abre para baixo, inclusive no desktop */
+@media screen and (min-width: 769px) {
+    .menu-pc {
+        top: 60px; /* Um pouco mais abaixo */
+        right: auto; /* Remove o deslocamento lateral */
+        left: 0;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .cabecalho {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cabecalho h1 {
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .cabecalho {
+        flex-direction: column; /* Organiza em coluna */
+        align-items: center; /* Centraliza */
+        text-align: center; /* Centraliza textos */
+    }
+
+    .cabecalho h1 {
+        font-size: 1.5em; /* Ajuste para melhor visualização */
+        width: 100%; /* Ocupa toda a largura */
+    }
+
+    .menu-container {
+        flex-direction: column;
+        align-items: center;
+        position: relative; /* Importante para posicionar o menu abaixo do botão */
+    }
+
+    .menu-icone {
+        display: block; /* Exibe o botão do menu */
+        text-align: center;
+    }
+
+    .menu-pc {
+        display: none; /* Começa oculto */
+        flex-direction: column;
+        background: #06192e;
+        position: absolute;
+        top: 100%; /* Faz o menu aparecer logo abaixo do botão */
+        left: 50%;
+        transform: translateX(-50%); /* Centraliza o menu */
+        width: 150px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+
+    .menu-pc button {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .menu-pc button:hover {
+        background-color: #112d4d;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .cabecalho {
+        flex-direction: column; /* Coloca os elementos em coluna */
+        align-items: center; /* Centraliza os itens */
+        text-align: center; /* Centraliza o texto */
+    }
+
+    .cabecalho h1 {
+        font-size: 1.2em; /* Ajusta o tamanho do título */
+        width: 100%; /* Garante que ocupe toda a largura */
+    }
+
+    .menu-container {
+        width: 165%;
+        flex-direction: column;
+        align-items: center; /* Centraliza os elementos */
+    }
+
+    .menu-icone {
+        text-align: center;
+    }
+
+    .menu-pc {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-pc button {
+        width: 100%;
+    }
 }
