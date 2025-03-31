@@ -9,9 +9,6 @@ document.querySelectorAll('header nav button').forEach(button => {
     });
 });
 
-
-
-
 async function getNoticias(query) {
     try {
         // esconder api key depois
@@ -57,6 +54,7 @@ async function getNoticias(query) {
 
 // função pra renderizar noticia
 function renderizaNoticias() {
+    
     const noticiasContainer = document.getElementById("noticias");
     noticiasContainer.innerHTML = '';
 
@@ -82,7 +80,6 @@ function renderizaNoticias() {
             <h2>${noticia.title}</h2>
         </a>
     `;
-
     noticiasContainer.appendChild(noticiaElement);
 }
 
@@ -129,7 +126,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-
 
 getNoticias('todas');
