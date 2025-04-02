@@ -29,7 +29,7 @@ async function getNoticiasMobile(query) {
             image: article.urlToImage,
             category: query
         }));
-
+        
         if (query === "todas") {
             todasNoticiasMobile = noticias;
             noticiasFiltradasMobile = [...todasNoticiasMobile];  // carrega todas as noticias
@@ -92,32 +92,5 @@ document.getElementById("nextNewsMobile").addEventListener("click", () => {
     indexMobile = (indexMobile + 1) % noticiasFiltradasMobile.length;  // proxima noticia
     renderizaNoticiasMobile();
 });
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const menuIcone = document.querySelector(".menu-icone");
-    const menuPc = document.querySelector(".menu-pc");
-
-    // Alterna a visibilidade do menu
-    menuIcone.addEventListener("click", function (event) {
-        event.stopPropagation(); // Evita que o clique no botão feche o menu imediatamente
-        menuPc.style.display = (menuPc.style.display === "flex") ? "none" : "flex";
-    });
-
-    // Fecha o menu ao clicar em qualquer botão dentro dele
-    document.querySelectorAll(".menu-pc button").forEach(button => {
-        button.addEventListener("click", function () {
-            menuPc.style.display = "none";
-        });
-    });
-
-    // Fecha o menu ao clicar fora dele, mas ignora o ícone de menu
-    document.addEventListener("click", function (event) {
-        if (!menuPc.contains(event.target) && event.target !== menuIcone && !menuIcone.contains(event.target)) {
-            menuPc.style.display = "none";
-        }
-    });
-});
-
 
 getNoticiasMobile('todas');

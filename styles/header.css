@@ -69,7 +69,21 @@ nav {
     border: none;
     cursor: pointer;
     border-radius: 6px;
+    width: 30px;         /* Largura do ícone */
+  height: 37px;        /* Altura do ícone */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
 }
+
+.bar {
+    margin-top: 3px;
+    width: 100%;
+    height: 5px;         /* Espessura das barras */
+    background-color: #000; /* Cor das barras */
+    border-radius: 5px;  /* Arredondamento nas bordas das barras */
+  }
 
 /* Garantir que o menu sempre abre para baixo, inclusive no desktop */
 @media screen and (min-width: 769px) {
