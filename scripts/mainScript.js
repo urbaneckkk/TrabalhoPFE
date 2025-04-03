@@ -2,7 +2,7 @@ let todasNoticias = [];
 let noticiasFiltradas = [];
 let index = 0;
 
-import {articles} from './API';
+import {articles} from './API.js';
 
 
 document.querySelectorAll('header nav button').forEach(button => {
@@ -75,6 +75,7 @@ async function getNoticias(query) {
 
 
 // função pra renderizar noticia
+
 function renderizaNoticias() {
     
     const noticiasContainer = document.getElementById("noticias");

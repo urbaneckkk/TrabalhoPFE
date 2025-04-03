@@ -2,7 +2,7 @@ let todasNoticiasMobile = [];
 let noticiasFiltradasMobile = [];
 let indexMobile = 0;
 
-
+import {articles} from './API.js';
 
 async function getNoticiasMobile(query) {
     try {
@@ -48,10 +48,10 @@ async function getNoticiasMobile(query) {
 
 
         if (query === "todas") {
-            todasNoticias = noticias;
-            noticiasFiltradas = [...todasNoticias];  // carrega todas as noticias
+            todasNoticiasMobile = noticias;
+            noticiasFiltradasMobile = [...todasNoticiasMobile];  // carrega todas as noticias
         } else {
-            noticiasFiltradas = noticias;  // carrega noticia do filtro selecionado
+            noticiasFiltradasMobile = noticias;  // carrega noticia do filtro selecionado
         }
 
         embaralhaNoticiaMobile();  // carrega noticia aleatoria ao trocar de categoria

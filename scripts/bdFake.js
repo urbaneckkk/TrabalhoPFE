@@ -1,4 +1,5 @@
 // Função para simular o banco de dados (usando localStorage)
+
 const bancoDeDados = {
     cadastrar: (usuario, senha) => {
         let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];

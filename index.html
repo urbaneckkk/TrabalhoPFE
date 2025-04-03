@@ -24,19 +24,14 @@
 
     <header class="cabecalho">
         <div id="login"> <!--Imagem do login para telas grandes-->
-            <button><img src="imagens/person.jpg" alt="login" srcset=""></button>
+            <button><img src="imagens/person.jpg" alt="Imagem de login" srcset="imagens/person.jpg"></button>
+            <h2>Entrar</h2>
         </div>
         <h1>Portal de Notícias</h1> <!--Título do site-->
 
         <!-- Botões para escolher o tema das notícia -->
         <nav class="menu-container">
-            <button class="menu-icone">
-                <div class="menu-icon">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-            </button> <!--Menu para mobile-->
+            <button class="menu-icone">☰</button> <!--Menu para mobile-->
             <div class="menu-pc">
                 <button>Todas</button>
                 <button>Tecnologia</button>
@@ -56,19 +51,19 @@
 
     <!-- Onde aparecerá as notícias -->
     <main>
-        <section class="padrao">
+        <div class="padrao">
             <button id="prevNews">&#11164;</button>
             <div id="noticias"></div> <!--Layout para telas grandes-->
             <button id="nextNews">&#11166;</button>
-        </section>
+        </div>
 
-        <section class="mobile">
+        <div class="mobile">
             <div id="noticiasMobile"></div>
             <div class="botao-mobile"> <!--Layout para telas pequenas -->
                 <button id="prevNewsMobile">&#11164;</button>
                 <button id="nextNewsMobile">&#11166;</button>
             </div>
-        </section>
+        </div>
     </main>
 
     <!-- Rodapé -->
@@ -76,11 +71,12 @@
         <p>&copy; 2025 Portal de Notícias. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="scripts/mainScript.js"></script>
+    <script src="scripts/mainScript.js" type="module"></script>
     <script src="scripts/loginScript.js"></script>
     <script src="scripts/searchScript.js"></script>
     <script src="scripts/bdFake.js"></script>
-    <script src="scripts/noticiasMobile.js"></script>
+    <script src="scripts/noticiasMobile.js" type="module"></script>
+    <script src="scripts/API.js" type="module"></script>
 </body>
 
 </html>
