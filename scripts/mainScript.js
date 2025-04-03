@@ -2,6 +2,8 @@ let todasNoticias = [];
 let noticiasFiltradas = [];
 let index = 0;
 
+
+
 document.querySelectorAll('header nav button').forEach(button => {
     button.addEventListener('click', () => {
         const categoria = button.textContent.toLowerCase();
@@ -11,30 +13,23 @@ document.querySelectorAll('header nav button').forEach(button => {
 
 async function getNoticias(query) {
     try {
+        const articles = [{
+            category: "todas",
+            image: "https://olhardigital.com.br/wp-content/uploads/2024/12/shutterstock_2521120403.jpg",
+            link: "https://olhardigital.com.br/2025/03/18/pro/samsung-vai-apostar-todas-as-suas-fichas-na-ia/",
+            title: "Samsung vai apostar todas as suas fichas na IA"
+        }]
+
         // esconder api key depois
-        const apiKey = '85b93d6b74ff446ea6f1e9b43b091cd7';
-        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=pt&apiKey=${apiKey}`;
-
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.status !== "ok") {
-            console.error('Erro na resposta da API:', data);
-            return;
-        }
-
-        if (!data.articles) {
-            console.error('Nenhuma notícia encontrada na resposta:', data);
-            return;
-        }
-
+        
         // dados que vamos consumir da api
-        const noticias = data.articles.map(article => ({
+        const noticias = articles.map(article => ({
             title: article.title,
-            link: article.url,
-            image: article.urlToImage,
+            link: article.link,
+            image: article.image,
             category: query
         }));
+        
 
         if (query === "todas") {
             todasNoticias = noticias;
