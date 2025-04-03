@@ -2,49 +2,50 @@ let todasNoticiasMobile = [];
 let noticiasFiltradasMobile = [];
 let indexMobile = 0;
 
-import {articles} from './API.js';
+import {articles} from './noticias.js';
+fetch('file:///C:/Users/dededev/Downloads/TrabalhoPFE-main/scripts/noticias.js');
 
 async function getNoticiasMobile(query) {
     try {
-        // esconder api key depois
-        // const apiKey = '85b93d6b74ff446ea6f1e9b43b091cd7';
-        // const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=pt&apiKey=${apiKey}`;
+        //esconder api key depois
+        const apiKey = '85b93d6b74ff446ea6f1e9b43b091cd7';
+        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=pt&apiKey=${apiKey}`;
 
-        // const response = await fetch(url);
-        // const data = await response.json();
+        const response = await fetch(url);
+        const data = await response.json();
 
-        // if (data.status !== "ok") {
-        //     console.error('Erro na resposta da API:', data);
-        //     return;
-        // }
+        if (data.status !== "ok") {
+            console.error('Erro na resposta da API:', data);
+            return;
+        }
 
-        // if (!data.articles) {
-        //     console.error('Nenhuma notícia encontrada na resposta:', data);
-        //     return;
-        // }
+        if (!data.articles) {
+            console.error('Nenhuma notícia encontrada na resposta:', data);
+            return;
+        }
 
-        // // dados que vamos consumir da api
-        // const noticias = data.articles.map(article => ({
-        //     title: article.title,
-        //     link: article.url,
-        //     image: article.urlToImage,
-        //     category: query
-        // }));
-        // console.log(noticias);
-        // console.log(data);
-        // if (query === "todas") {
-        //     todasNoticiasMobile = noticias;
-        //     noticiasFiltradasMobile = [...todasNoticiasMobile];  // carrega todas as noticias
-        // } else {
-        //     noticiasFiltradasMobile = noticias;  // carrega noticia do filtro selecionado
-        // }
-
-        const noticias = articles.map(article => ({
+        // dados que vamos consumir da api
+        const noticias = data.articles.map(article => ({
             title: article.title,
-            link: article.link,
-            image: article.image,
+            link: article.url,
+            image: article.urlToImage,
             category: query
         }));
+        console.log(noticias);
+        console.log(data);
+        if (query === "todas") {
+            todasNoticiasMobile = noticias;
+            noticiasFiltradasMobile = [...todasNoticiasMobile];  // carrega todas as noticias
+        } else {
+            noticiasFiltradasMobile = noticias;  // carrega noticia do filtro selecionado
+        }
+
+        // const noticias = articles.map(article => ({
+        //     title: article.title,
+        //     link: article.link,
+        //     image: article.image,
+        //     category: query
+        // }));
 
 
         if (query === "todas") {
