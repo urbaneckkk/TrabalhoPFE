@@ -2,7 +2,7 @@ let todasNoticias = [];
 let noticiasFiltradas = [];
 let index = 0;
 
-import {articles} from './noticias.js';
+import {articles} from './api.js';
 
 
 document.querySelectorAll('header nav button').forEach(button => {
@@ -17,31 +17,37 @@ async function getNoticias(query) {
         
 
         //esconder api key depois
-        const apiKey = '85b93d6b74ff446ea6f1e9b43b091cd7';
-        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=pt&apiKey=${apiKey}`;
+        // const apiKey = '85b93d6b74ff446ea6f1e9b43b091cd7';
+        // const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=pt&apiKey=${apiKey}`;
 
-        const response = await fetch(url);
-        const data = await response.json();
+        // const response = await fetch(url);
+        // const data = await response.json();
 
-        if (data.status !== "ok") {
-            console.error('Erro na resposta da API:', data);
-            return;
-        }
+        // if (data.status !== "ok") {
+        //     console.error('Erro na resposta da API:', data);
+        //     return;
+        // }
 
-        if (!data.articles) {
-            console.error('Nenhuma notícia encontrada na resposta:', data);
-            return;
-        }
+        // if (!data.articles) {
+        //     console.error('Nenhuma notícia encontrada na resposta:', data);
+        //     return;
+        // }
 
-        // dados que vamos consumir da api
-        const noticias = data.articles.map(article => ({
+        // // dados que vamos consumir da api
+        // const noticias = data.articles.map(article => ({
+        //     title: article.title,
+        //     link: article.url,
+        //     image: article.urlToImage,
+        //     category: query
+        // }));
+
+        const noticias = articles.map(article => ({
             title: article.title,
-            link: article.url,
-            image: article.urlToImage,
+            link: article.link,
+            image: article.image,
             category: query
         }));
-        console.log(noticias);
-        console.log(data);
+        
         if (query === "todas") {
             todasNoticias = noticias;
             noticiasFiltradas = [...todasNoticias];  // carrega todas as noticias
@@ -49,12 +55,7 @@ async function getNoticias(query) {
             noticiasFiltradas = noticias;  // carrega noticia do filtro selecionado
         }
         // dados que vamos consumir da api
-        // const noticias = articles.map(article => ({
-        //     title: article.title,
-        //     link: article.link,
-        //     image: article.image,
-        //     category: query
-        // }));
+        
         
 
         if (query === "todas") {
