@@ -8,7 +8,7 @@
 }
 
 #searchContainer.active {
-    width: 700px;
+    width: 350px;
     /* Expande ao clicar */
 }
 
@@ -23,7 +23,7 @@
 }
 
 #searchBar.active {
-    width: 700px;
+    width: 200px;
     /* Tamanho da barra expandida */
     padding: 10px;
     opacity: 1;
