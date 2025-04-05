@@ -16,11 +16,10 @@ function filtroNoticias(searchText) {
         searchResults.style.display = 'none';
         return;
     }
-    todasNoticias = [];
-    todasNoticias = noticias;
+
     // Filtra as notícias conforme o usuário digita
     const filtered = [...todasNoticias].filter(noticia => {
-        return noticia.title.trim().toLowerCase().includes(normalizedSearchText);
+        return (noticia.title ?? '').toLowerCase().includes(normalizedSearchText);
     });
 
     // Exibe uma mensagem caso não haja resultados

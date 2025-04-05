@@ -1,3 +1,15 @@
+function atualizarTituloLogin(usuarioLogado) {
+    const titulo = document.getElementById("login-titulo");
+    if (titulo) {
+        if (usuarioLogado) {
+            titulo.textContent = `Bem-vindo, ${usuarioLogado.usuario}`;
+        } else {
+            titulo.textContent = "Entrar";
+        }
+    }
+}
+
+
 // Função para exibir a mensagem de sucesso ou erro
 function mostrarMensagem(mensagem, tipo) {
     const mensagemElemento = document.getElementById('mensagem-erro-sucesso');
@@ -55,6 +67,7 @@ function exibirLoginOuLogout(usuarioLogado = null) {
                 if (loginImgElement) {
                     loginImgElement.src = 'imagens/person.jpg';  // Imagem padrão
                 }
+                atualizarTituloLogin(null);
                 exibirLoginOuLogout();  // Exibe novamente o formulário de login
             });
 
@@ -107,6 +120,7 @@ function exibirLoginOuLogout(usuarioLogado = null) {
                     localStorage.setItem('imagem_perfil', imagemPerfil);
 
                     loginform.remove();  // Remove a modal após o login bem-sucedido
+                    atualizarTituloLogin(usuarioLogado);
                     exibirLoginOuLogout(usuarioLogado);  // Exibe a nova modal com o nome do usuário
                 }
             });
@@ -147,11 +161,14 @@ document.body.addEventListener("click", (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     const imagemPerfil = localStorage.getItem('imagem_perfil');
     const loginImgElement = document.querySelector('#login img');
-    
-    // Quando a página carregar, se a imagem de perfil estiver salva no localStorage, atualiza a imagem do login
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuario_logado'));
+
     if (imagemPerfil && loginImgElement) {
-        loginImgElement.src = imagemPerfil;  // Atualiza a imagem do login para a imagem salva
+        loginImgElement.src = imagemPerfil;
     } else if (loginImgElement) {
-        loginImgElement.src = 'imagens/person.jpg';  // Imagem padrão caso não haja imagem salva
+        loginImgElement.src = 'imagens/person.jpg';
     }
+
+    atualizarTituloLogin(usuarioLogado);
 });
+
