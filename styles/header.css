@@ -2,8 +2,9 @@
     background: linear-gradient(90deg, #051322, #0c2f53);
     color: white;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Alinha os itens em coluna */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
     padding: 15px;
 }
 
@@ -11,21 +12,23 @@
     text-align: center;
     font-size: 1.8em;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
-    width: 20%;
+    width: 100%; /* Certifica que o título ocupe toda a largura disponível */
+    margin: 10px 0; /* Espaçamento entre o título e os outros itens */
 }
 
 nav {
-    width: 70%;
+    width: 100%; /* Faz com que a barra de navegação ocupe toda a largura disponível */
     display: flex;
-    flex-wrap: nowrap;
+    justify-content: center; /* Centraliza os itens dentro do nav */
+    align-items: center;
     position: relative;
 }
 
 .menu-container {
-    width: 70%;
     display: flex;
-    flex-wrap: nowrap;
+    justify-content: center; /* Centraliza o menu */
     align-items: center;
+    width: 100%; /* Faz o menu ocupar toda a largura */
 }
 
 /* Menu abre para baixo */

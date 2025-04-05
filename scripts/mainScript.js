@@ -77,7 +77,6 @@ async function getNoticias(query) {
 // função pra renderizar noticia
 
 function renderizaNoticias() {
-    
     const noticiasContainer = document.getElementById("noticias");
     noticiasContainer.innerHTML = '';
 
