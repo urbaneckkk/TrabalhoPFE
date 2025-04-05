@@ -2,9 +2,12 @@
     background: linear-gradient(90deg, #051322, #0c2f53);
     color: white;
     display: flex;
-    flex-direction: column; /* Alinha os itens em coluna */
-    justify-content: center; /* Centraliza o conteúdo verticalmente */
-    align-items: center; /* Centraliza os itens horizontalmente */
+    flex-direction: column;
+    /* Alinha os itens em coluna */
+    justify-content: center;
+    /* Centraliza o conteúdo verticalmente */
+    align-items: center;
+    /* Centraliza os itens horizontalmente */
     padding: 15px;
 }
 
@@ -12,32 +15,38 @@
     text-align: center;
     font-size: 1.8em;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
-    width: 100%; /* Certifica que o título ocupe toda a largura disponível */
-    margin: 10px 0; /* Espaçamento entre o título e os outros itens */
+    width: 100%;
+    /* Certifica que o título ocupe toda a largura disponível */
+    margin: 10px 0;
+    /* Espaçamento entre o título e os outros itens */
 }
 
 nav {
-    width: 100%; /* Faz com que a barra de navegação ocupe toda a largura disponível */
+    width: 100%;
+    /* Faz com que a barra de navegação ocupe toda a largura disponível */
     display: flex;
-    justify-content: center; /* Centraliza os itens dentro do nav */
-    align-items: center;
+
     position: relative;
 }
 
 .menu-container {
     display: flex;
-    justify-content: center; /* Centraliza o menu */
-    align-items: center;
-    width: 100%; /* Faz o menu ocupar toda a largura */
+    width: 100%;
+    position: relative;
+    /* Faz o menu ocupar toda a largura */
 }
 
 /* Menu abre para baixo */
 .menu-pc {
     display: none;
+    /* ou block, se quiser que fique visível direto */
     flex-direction: column;
+
     background: #06192e;
     position: absolute;
-    top: 50px;
+    top: 100%;
+    /* posiciona logo abaixo do botão/menu-icone */
+    /* Faz o menu aparecer logo abaixo do botão */
     right: 0;
     width: 150px;
     border-radius: 8px;
@@ -55,7 +64,6 @@ nav {
     font-size: 1em;
     width: 100%;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu-pc button:hover {
@@ -72,30 +80,46 @@ nav {
     border: none;
     cursor: pointer;
     border-radius: 6px;
-    width: 30px;         /* Largura do ícone */
-  height: 37px;        /* Altura do ícone */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
+    width: 25px;
+    /* Largura do ícone */
+    height: 25px;
+    /* Altura do ícone */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    text-align: center;
 }
 
 .bar {
     margin-top: 3px;
     width: 100%;
-    height: 5px;         /* Espessura das barras */
-    background-color: #000; /* Cor das barras */
-    border-radius: 5px;  /* Arredondamento nas bordas das barras */
-  }
+    height: 5px;
+    /* Espessura das barras */
+    background-color: #000;
+    /* Cor das barras */
+    border-radius: 5px;
+    /* Arredondamento nas bordas das barras */
+}
+
+.menu-icone span {
+    height: 4px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
 
 /* Garantir que o menu sempre abre para baixo, inclusive no desktop */
 @media screen and (min-width: 769px) {
     .menu-pc {
-        top: 60px; /* Um pouco mais abaixo */
-        right: auto; /* Remove o deslocamento lateral */
+        top: 60px;
+        /* Um pouco mais abaixo */
+        right: auto;
+        /* Remove o deslocamento lateral */
         left: 0;
     }
 }
+
 @media screen and (max-width: 1024px) {
     .cabecalho {
         justify-content: space-between;
@@ -105,40 +129,78 @@ nav {
     .cabecalho h1 {
         width: 80%;
     }
+
+    .menu-container {
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        /* Importante para posicionar o menu abaixo do botão */
+    }
+
+    .menu-icone {
+        /* Exibe o botão do menu */
+        text-align: center;
+    }
+
+    .menu-pc {
+        display: none;
+        /* Começa oculto */
+        flex-direction: column;
+        background: #06192e;
+        position: absolute;
+        top: 100%;
+        /* Faz o menu aparecer logo abaixo do botão */
+        left: 50%;
+        transform: translateX(-50%);
+        /* Centraliza o menu */
+        width: 150px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
 }
 
 
 @media screen and (max-width: 768px) {
     .cabecalho {
-        flex-direction: column; /* Organiza em coluna */
-        align-items: center; /* Centraliza */
-        text-align: center; /* Centraliza textos */
+        flex-direction: column;
+        /* Organiza em coluna */
+        align-items: center;
+        /* Centraliza */
+        text-align: center;
+        /* Centraliza textos */
     }
 
     .cabecalho h1 {
-        font-size: 1.5em; /* Ajuste para melhor visualização */
-        width: 100%; /* Ocupa toda a largura */
+        font-size: 1.5em;
+        /* Ajuste para melhor visualização */
+        width: 100%;
+        /* Ocupa toda a largura */
     }
 
     .menu-container {
         flex-direction: column;
         align-items: center;
-        position: relative; /* Importante para posicionar o menu abaixo do botão */
+        position: relative;
+        /* Importante para posicionar o menu abaixo do botão */
     }
 
     .menu-icone {
-        display: block; /* Exibe o botão do menu */
+        /* Exibe o botão do menu */
         text-align: center;
     }
 
     .menu-pc {
-        display: none; /* Começa oculto */
+        display: none;
+        /* Começa oculto */
         flex-direction: column;
         background: #06192e;
         position: absolute;
-        top: 100%; /* Faz o menu aparecer logo abaixo do botão */
+        top: 100%;
+        /* Faz o menu aparecer logo abaixo do botão */
         left: 50%;
-        transform: translateX(-50%); /* Centraliza o menu */
+        transform: translateX(-50%);
+        /* Centraliza o menu */
         width: 150px;
         border-radius: 8px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
@@ -160,29 +222,54 @@ nav {
 
 @media screen and (max-width: 480px) {
     .cabecalho {
-        flex-direction: column; /* Coloca os elementos em coluna */
-        align-items: center; /* Centraliza os itens */
-        text-align: center; /* Centraliza o texto */
+        flex-direction: column;
+        /* Coloca os elementos em coluna */
+        align-items: center;
+        /* Centraliza os itens */
+        text-align: center;
+        /* Centraliza o texto */
     }
 
     .cabecalho h1 {
-        font-size: 1.2em; /* Ajusta o tamanho do título */
-        width: 100%; /* Garante que ocupe toda a largura */
+        font-size: 1.2em;
+        /* Ajusta o tamanho do título */
+        width: 100%;
+        /* Garante que ocupe toda a largura */
     }
 
     .menu-container {
         width: 165%;
         flex-direction: column;
-        align-items: center; /* Centraliza os elementos */
+        align-items: center;
+        /* Centraliza os elementos */
     }
 
     .menu-icone {
         text-align: center;
     }
 
-    .menu-pc {
+    .menu-icone span {
+        height: 4px;
         width: 100%;
-        text-align: center;
+        background-color: #ffffff;
+        border-radius: 2px;
+    }
+
+    .menu-pc {
+        display: none;
+        /* Começa oculto */
+        flex-direction: column;
+        background: #06192e;
+        position: absolute;
+        top: 100%;
+        /* Faz o menu aparecer logo abaixo do botão */
+        left: 50%;
+        transform: translateX(-50%);
+        /* Centraliza o menu */
+        width: 150px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 10;
     }
 
     .menu-pc button {
