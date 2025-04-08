@@ -2323,11 +2323,11 @@ document.getElementById("nextNews").addEventListener("click", () => {
 
 document.addEventListener('keypress', function (event) {
     console.log(event.key)
-    if (event.key === "a") {
+    if (event.key === ",") {
         index = (index - 1 + noticiasFiltradas.length) % noticiasFiltradas.length;  // noticia anterior
         renderizaNoticias();
     }
-    if (event.key === "d") {
+    if (event.key === ".") {
 
         index = (index + 1) % noticiasFiltradas.length;  // proxima noticia
         renderizaNoticias();
