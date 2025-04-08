@@ -2319,6 +2319,21 @@ document.getElementById("nextNews").addEventListener("click", () => {
     renderizaNoticias();
 });
 
+//navegação pelas setas
+
+document.addEventListener('keypress', function (event) {
+    console.log(event.key)
+    if (event.key === "a") {
+        index = (index - 1 + noticiasFiltradas.length) % noticiasFiltradas.length;  // noticia anterior
+        renderizaNoticias();
+    }
+    if (event.key === "d") {
+
+        index = (index + 1) % noticiasFiltradas.length;  // proxima noticia
+        renderizaNoticias();
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const menuIcone = document.querySelector(".menu-icone");
     const menuPc = document.querySelector(".menu-pc");
@@ -2343,5 +2358,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
 
 getNoticias('todas');
